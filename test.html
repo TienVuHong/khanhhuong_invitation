@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Transition Example</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      text-align: center;
+    }
+
+    #main {
+      transition: opacity 0.5s ease;
+      opacity: 1;
+    }
+
+    #main.hidden {
+      opacity: 0;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div id="main" class="fade-transition">
+    Original content here.
+  </div>
+
+  <button onclick="replaceContent()">Replace Content</button>
+
+  <script>
+    function replaceContent() {
+      const main = document.getElementById("main");
+
+      // Fade out
+      main.classList.add("hidden");
+
+      // Wait for the fade-out to complete
+      setTimeout(() => {
+        // Replace content
+        main.innerHTML = "New content here.";
+
+        // Fade in
+        main.classList.remove("hidden");
+      }, 500); // Match CSS transition duration
+    }
+  </script>
+</body>
+</html>

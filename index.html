@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <script defer src="script.js"></script>
   <style>
@@ -11,17 +10,101 @@
       margin: 0;
       width: 100vw;
       height: 100vh;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to bottom right, #d1c4e9, #f8bbd0);
       overflow: hidden;
+    }
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .reaction {
+      margin-bottom: 20px;
+    }
+    .reaction img {
+      max-width: 250px;
+    }
+    .reaction-message {
+      font-size: 1.5em;
+      color: #e91e63;
+      margin-top: 10px;
+    }
+
+    #main {
+      transition: opacity 0.5s ease;
+      opacity: 1;
+    }
+    #main.fade-out {
+      opacity: 0;
+    }
+    #main.fade-in {
+      opacity: 1;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #9c27b0;
+      animation: pop 1s ease-out infinite alternate;
+    }
+    @keyframes pop {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .zoom-image {
+      animation: popp 1s ease-out infinite alternate;
+    }
+    @keyframes popp {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+
+    .yes {
+      position: absolute;
+      background-color: #ba68c8;
+      top: 62%;
+      left: 35%;
+      transform: translateY(-50%);
+      font-size: 1.5rem;
+      border: none;
+      border-radius: 10px;
+      white-space: nowrap;
+      color: white;
+    }
+    .yes:hover {
+      background-color: #8e24aa;
     }
 
     #evil-button {
+      top: 62%;
+      left: 55%;
+      transform: translateY(-50%);
       position: absolute;
       white-space: nowrap;
-      font-size: 2rem;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      border: none;
     }
-  </style>
+    </style>
 </head>
 <body>
-  <button id="evil-button">Can't Touch Me</button>
+  <div>
+    <audio controls id="bgSound" src="bgSound.mp3" preload="auto" loop></audio>
+    <audio id="noSound" src="quack_5.mp3" preload="auto"></audio>
+  </div>
+  <div id="main">
+    <div class="center">
+      <img src="start1.png" alt="start" class="zoom-image" onclick="start()" width="300" height="300">
+      <h2 style="color: #7d3eb1;">Bắt đầu</h2>
+      <!-- <button class="" onclick="start()">
+        <img src="start.png" alt="start">
+        Đi dạo hong 💖
+      </button> -->
+    </div>
+  </div>
 </body>
 </html>
