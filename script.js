@@ -125,7 +125,7 @@ function yesBtnClicked()
     document.getElementById("main").innerHTML = `
       <div class="center">
         <h1>Ơn giời!!! Cuối cùng cổ cũng đồng ý😍</h1>
-        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExempiYmhzZHd1em1lYWE3aXp2OXNoMjBkNmt1bXk2dzlzOHVwdHVkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L0O3TQpp0WnSXmxV8p/giphy.gif" style="max-width: 60%; height: auto;" />
+        <img src="woohoo.gif" style="max-width: 60%; height: auto;" />
         <h2>Chọn film thôiii</h2>
         <button id="dancing-button">Chọn film</button>
       </div>
@@ -174,11 +174,3 @@ function randomFirework() {
   const y = Math.random() * window.innerHeight * 0.7;
   createFirework(x, y);
 }
-
-// Launch fireworks at intervals
-// setInterval(randomFirework, 700);
-
-// Optional: click to create firework
-// document.addEventListener('click', e => {
-//   createFirework(e.clientX, e.clientY);
-// });
