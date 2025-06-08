@@ -47,12 +47,39 @@
 
     h1 {
       font-size: 3em;
-      color: #9c27b0;
+      color: #7d3eb1;
       animation: pop 1s ease-out infinite alternate;
     }
     @keyframes pop {
       0% { transform: scale(1); }
       100% { transform: scale(1.05); }
+    }
+
+    h2 {
+      font-size: 3rem;
+      animation: bounceSpinColor 2s infinite ease-in-out;
+    }
+    @keyframes bounceSpinColor {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        color: #ff6f61;
+      }
+      25% {
+        transform: translateY(-20px) rotate(-10deg);
+        color: #6a5acd;
+      }
+      50% {
+        transform: translateY(0) rotate(10deg);
+        color: #20b2aa;
+      }
+      75% {
+        transform: translateY(-15px) rotate(-5deg);
+        color: #ffa500;
+      }
+      100% {
+        transform: translateY(0) rotate(0deg);
+        color: #ff6f61;
+      }
     }
 
     .zoom-image {
@@ -65,7 +92,7 @@
 
     .yes {
       position: absolute;
-      background-color: #ba68c8;
+      background-color: #9a35c2;
       top: 62%;
       left: 35%;
       transform: translateY(-50%);
@@ -89,6 +116,48 @@
       border-radius: 10px;
       border: none;
     }
+
+    #dancing-button {
+      padding: 15px 30px;
+      font-size: 1.5rem;
+      background-color: #9c27b0;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      animation: bounceSpinColor 2s infinite ease-in-out;
+      transition: transform 0.2s;
+    }
+
+    .particle {
+      position: absolute;
+      width: 10px; /* Bigger particle */
+      height: 10px;
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0.9;
+      animation: explode 1.2s ease-out forwards;
+    }
+    @keyframes explode {
+      to {
+        transform: translate(var(--x), var(--y)) scale(1.5);
+        opacity: 0;
+      }
+    }
+    
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 50px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
     </style>
 </head>
 <body>
@@ -99,11 +168,7 @@
   <div id="main">
     <div class="center">
       <img src="start1.png" alt="start" class="zoom-image" onclick="start()" width="300" height="300">
-      <h2 style="color: #7d3eb1;">Bắt đầu</h2>
-      <!-- <button class="" onclick="start()">
-        <img src="start.png" alt="start">
-        Đi dạo hong 💖
-      </button> -->
+      <h1 style="color: #7d3eb1;">Bắt đầu</h1>
     </div>
   </div>
 </body>

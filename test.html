@@ -1,55 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Content Transition Example</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 40px;
-      text-align: center;
-    }
+      <div class="center">
+        <iframe src="https://www.cgv.vn/default/movies/now-showing.html" height="500" width="1000" title="movie_iframe"></iframe>
+        <h1 id="text"></h1>
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExandsYjMyYTk3Z3Z6cHh4ZjlucDJxd3R0NDQ4NzRnYzM5cG84dGJsayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/opDRL3H2A9iLNuvbOv/giphy.gif" style="max-width: 20%; height: auto;" />
+        <script>
+          function showMessage(message, id)
+          {
+            const textContainer = document.getElementById(id);  
+            let index = 0;
+            const speed = 50; // milliseconds per character
+            function typeWriter() {
+              if (index < message.length) {
+                textContainer.textContent += message.charAt(index);
+                index++;
+                setTimeout(typeWriter, speed);
+              }
+            }
+            typeWriter(); // Start the effect
+          }
+          showMessage('Yayyyy! 💃 Cảm ơn em rấc nhiều!!! 😍', 'text')
+        </script>
 
-    #main {
-      transition: opacity 0.5s ease;
-      opacity: 1;
-    }
+      <!-- <div id="gallery" class="image-grid">
+        <img src="1.png" alt="Image 1">
+        <img src="2.png" alt="Image 2">
+        <img src="3.png" alt="Image 3">
+        <img src="4.png" alt="Image 4">
+      </div> -->
 
-    #main.hidden {
-      opacity: 0;
-    }
-
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div id="main" class="fade-transition">
-    Original content here.
-  </div>
-
-  <button onclick="replaceContent()">Replace Content</button>
-
-  <script>
-    function replaceContent() {
-      const main = document.getElementById("main");
-
-      // Fade out
-      main.classList.add("hidden");
-
-      // Wait for the fade-out to complete
-      setTimeout(() => {
-        // Replace content
-        main.innerHTML = "New content here.";
-
-        // Fade in
-        main.classList.remove("hidden");
-      }, 500); // Match CSS transition duration
-    }
-  </script>
-</body>
-</html>
+      <p>
+        SĐT: 0986774116
+        <br>Không phải "Đào lừa" đâu, số của anh đấy nhé
+        <br>Còn zalo của anh trông nó sẽ như này, hơi Bình Dương tý nhưng đừng sợ =))
+        <img src="zalo.png" alt="my_zalo" style="border-radius: 10px;">
+        <br>Anh sẽ contact em
+        <br>Gửi lời nhắn cho anh nhé
+      </p>
+      <input type="text">
+      <button> send</button>

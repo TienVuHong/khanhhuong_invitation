@@ -7,7 +7,7 @@ function start()
   setTimeout(() => {
     document.getElementById("main").innerHTML = `
     <div class="center">
-      <h1>Cuối tuần này đi xem phim zới tui hong?😊💕</h1>
+      <h1 id="question"></h1>
       <div class="reaction" id="reaction" style="display: none;">
         <img src="meme.png" alt="Sad Reaction" />
         <div class="reaction-message">Đuổi nó theo chiều ngang ấy.</div>
@@ -75,13 +75,30 @@ function start()
     function distanceFromCenter(boxPosition, mousePosition, boxSize) {
       return boxPosition - mousePosition + boxSize / 2
     }
+
+    showMessage('Cuối tuần này đi xem phim với anh nhéee?😊💕', 'question')
   }, 500);
   
 }
 
+function showMessage(message, id)
+{
+  const textContainer = document.getElementById(id);  
+  let index = 0;
+  const speed = 50; // milliseconds per character
+  function typeWriter() {
+    if (index < message.length) {
+      textContainer.textContent += message.charAt(index);
+      index++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+  typeWriter(); // Start the effect
+}
+
 function sendLogMessage(mess)
 {
-  fetch('http://localhost:3000/log', {
+  fetch('/log', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -107,12 +124,61 @@ function yesBtnClicked()
   setTimeout(() => {
     document.getElementById("main").innerHTML = `
       <div class="center">
-        <h1>Yayyyy! 💃 Không biết nói gì hơn, quá xúc động!!! 😍</h1>
-        <img src="https://media.giphy.com/media/l0MYLzQ3G9D1pTfOQ/giphy.gif" alt="Happy Dance" style="max-width: 100%; height: auto;" />
+        <h1>Ơn giời!!! Cuối cùng cổ cũng đồng ý😍</h1>
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExempiYmhzZHd1em1lYWE3aXp2OXNoMjBkNmt1bXk2dzlzOHVwdHVkeSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L0O3TQpp0WnSXmxV8p/giphy.gif" style="max-width: 60%; height: auto;" />
+        <h2>Chọn film thôiii</h2>
+        <button id="dancing-button">Chọn film</button>
       </div>
     `;
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
+    setInterval(randomFirework, 1500);
+    document.addEventListener('click', e => {
+      createFirework(e.clientX, e.clientY);
+    });
   }, 500);
 
 }
+
+function randomColor() {
+  const colors = ['#ff4c4c', '#4cff4c', '#4c4cff', '#ffff4c', '#ff4cff', '#4cffff', '#ffffff'];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function createFirework(x, y) {
+  const numParticles = 50; // More particles
+  for (let i = 0; i < numParticles; i++) {
+    const particle = document.createElement('div');
+    particle.classList.add('particle');
+    particle.style.left = `${x}px`;
+    particle.style.top = `${y}px`;
+    particle.style.background = randomColor();
+
+    const angle = Math.random() * 2 * Math.PI;
+    const distance = Math.random() * 200 + 100; // Bigger explosion radius
+    const dx = Math.cos(angle) * distance + 'px';
+    const dy = Math.sin(angle) * distance + 'px';
+    particle.style.setProperty('--x', dx);
+    particle.style.setProperty('--y', dy);
+
+    document.body.appendChild(particle);
+
+    setTimeout(() => {
+      particle.remove();
+    }, 1500);
+  }
+}
+
+function randomFirework() {
+  const x = Math.random() * window.innerWidth;
+  const y = Math.random() * window.innerHeight * 0.7;
+  createFirework(x, y);
+}
+
+// Launch fireworks at intervals
+// setInterval(randomFirework, 700);
+
+// Optional: click to create firework
+// document.addEventListener('click', e => {
+//   createFirework(e.clientX, e.clientY);
+// });
