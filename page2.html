@@ -1,9 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Page 2</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    textarea {
+      width: 300px;
+      min-height: 40px;
+      resize: none;
+      overflow: hidden;
+      font-size: 16px;
+      padding: 8px;
+    }
+  </style>
 </head>
 <body>
-  <h1>This is Page 2</h1>
+
+  <textarea id="autoResizeTextarea" placeholder="Type something..."></textarea>
+  <button>Send</button>
+
+  <script>
+    const textarea = document.getElementById('autoResizeTextarea');
+
+    textarea.addEventListener('input', function () {
+      this.style.height = 'auto'; // Reset height
+      this.style.height = this.scrollHeight + 'px'; // Set to scroll height
+    });
+  </script>
+
 </body>
 </html>

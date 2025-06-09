@@ -118,25 +118,85 @@ function sendLogMessage(mess)
 
 function yesBtnClicked()
 {
-  sendLogMessage("Yeahhhhhhhhhh, She agreed!!");
+  sendLogMessage("Da bam dong y =))");
   document.getElementById("main").classList.remove('fade-in');
   document.getElementById("main").classList.add('fade-out');
   setTimeout(() => {
     document.getElementById("main").innerHTML = `
       <div class="center">
-        <h1>Ơn giời!!! Cuối cùng cổ cũng đồng ý😍</h1>
+        <h1>WOOHOOO!!! Vui quáaaaaaa😍</h1>
         <img src="woohoo.gif" style="max-width: 60%; height: auto;" />
         <h2>Chọn film thôiii</h2>
-        <button id="dancing-button">Chọn film</button>
+        <button id="dancing-button" onClick="chooseFilmClicked()">Chọn film</button>
       </div>
     `;
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
     setInterval(randomFirework, 1500);
-    document.addEventListener('click', e => {
-      createFirework(e.clientX, e.clientY);
-    });
+    // document.addEventListener('click', e => {
+    //   createFirework(e.clientX, e.clientY);
+    // });
   }, 500);
+
+}
+
+function chooseFilmClicked()
+{
+  sendLogMessage("Chon film roi nhe :v");
+  document.getElementById("main").classList.remove('fade-in');
+  document.getElementById("main").classList.add('fade-out');
+  setTimeout(() => {
+    document.getElementById("main").innerHTML = `
+      <div class="center">
+        <div id="gallery" class="image-grid">
+          <img src="1.png" alt="Image 1" id="film1" onclick="ChosenFilm(1)">
+          <img src="2.png" alt="Image 2" id="film2" onclick="ChosenFilm(2)">
+          <img src="3.png" alt="Image 3" id="film3" onclick="ChosenFilm(3)">
+          <img src="4.png" alt="Image 4" id="film4" onclick="ChosenFilm(4)">
+        </div>
+        <h3>
+          Đây là 4 phim mà anh thấy đáng xem nhất nè.
+          <br>Em hãy bấm vào ảnh để chọn bộ phim em thích nhé
+          <br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha
+          <input type="text" placeholder="Phim em đề xuất" id="film">
+        </h3>
+        <button class="purple_button" id="lastStepButton" onclick="lastStepClicked()">Last step</button>
+        <h3 id="myRightPrediction" style="display: none;">
+          <br>Đúmm ùyy! Anh biết là "Disney Princess" sẽ chọn Silo & Stitch mà 😎
+          <br>
+        </h3>
+        <h3 id="myWrongPrediction" style="display: none;">
+          <br>"Disney Princess" không chọn Silo & Stitch à =)))
+        </h3>
+        <script>
+          const images = document.querySelectorAll('.image-grid img');
+
+          images.forEach(img => {
+            img.addEventListener('click', () => {
+              // Remove 'selected' from all images
+              images.forEach(i => i.classList.remove('selected'));
+              // Add 'selected' to clicked image
+              img.classList.add('selected');
+              if (img.id == "film3"){
+                document.getElementById("myRightPrediction").style.display = "block";
+                document.getElementById("myWrongPrediction").style.display = "none";
+              }
+              else {
+                document.getElementById("myWrongPrediction").style.display = "block";
+                document.getElementById("myRightPrediction").style.display = "none";
+              }
+            });
+          });
+        </script>
+      </div>
+    `;
+    document.getElementById("main").classList.remove('fade-out');
+    document.getElementById("main").classList.add('fade-in');
+  }, 1000);
+}
+
+function lastStepClicked()
+{
 
 }
 

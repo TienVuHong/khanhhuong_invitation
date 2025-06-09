@@ -82,6 +82,50 @@
       }
     }
 
+    h3 {
+      color: #7025b6;
+    }
+
+    .purple_button {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      background-color: #9c27b0;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .purple_button:hover {
+      background-color: #76199b;
+    }
+
+    input {
+      padding: 5px 8px;
+      font-size: 1.0rem;
+      color: #7025b6;
+      border: none;
+      border-radius: 6px;
+      width: 80%;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    textarea {
+      width: 80%;
+      min-height: 40px;
+      resize: none;
+      overflow: hidden;
+      color: #7025b6;
+      font-size: 1.0rem;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+
+    input::placeholder, textarea::placeholder {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: #a078bb;
+    }
+
     .zoom-image {
       animation: popp 1s ease-out infinite alternate;
     }
@@ -148,15 +192,22 @@
     .image-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 50px;
+      gap: 60px;
       max-width: 800px;
       margin: auto;
     }
 
     .image-grid img {
-      width: 100%;
+      width: 130%;
       height: auto;
+      border: 3px solid transparent;
       border-radius: 8px;
+      cursor: pointer;
+      transition: border 0.3s ease;
+    }
+
+    .image-grid img.selected {
+      border: 5px solid purple;
     }
     </style>
 </head>
