@@ -77,7 +77,7 @@ function start()
     }
 
     showMessage('Cuối tuần này đi xem phim với anh nhéee?😊💕', 'question')
-  }, 500);
+  }, 1000);
   
 }
 
@@ -136,7 +136,7 @@ function yesBtnClicked()
     // document.addEventListener('click', e => {
     //   createFirework(e.clientX, e.clientY);
     // });
-  }, 500);
+  }, 1000);
 
 }
 
@@ -154,7 +154,7 @@ function chooseFilmClicked()
           <img src="3.png" alt="Image 3" id="film3" onclick="ChosenFilm(3)">
           <img src="4.png" alt="Image 4" id="film4" onclick="ChosenFilm(4)">
         </div>
-        <h3>
+        <h3 id="choose_film_guide">
           Đây là 4 phim mà anh thấy đáng xem nhất nè.
           <br>Em hãy bấm vào ảnh để chọn bộ phim em thích nhé
           <br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha
@@ -168,28 +168,26 @@ function chooseFilmClicked()
         <h3 id="myWrongPrediction" style="display: none;">
           <br>"Disney Princess" không chọn Silo & Stitch à =)))
         </h3>
-        <script>
-          const images = document.querySelectorAll('.image-grid img');
-
-          images.forEach(img => {
-            img.addEventListener('click', () => {
-              // Remove 'selected' from all images
-              images.forEach(i => i.classList.remove('selected'));
-              // Add 'selected' to clicked image
-              img.classList.add('selected');
-              if (img.id == "film3"){
-                document.getElementById("myRightPrediction").style.display = "block";
-                document.getElementById("myWrongPrediction").style.display = "none";
-              }
-              else {
-                document.getElementById("myWrongPrediction").style.display = "block";
-                document.getElementById("myRightPrediction").style.display = "none";
-              }
-            });
-          });
-        </script>
       </div>
     `;
+
+    const images = document.querySelectorAll('.image-grid img');
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        // Remove 'selected' from all images
+        images.forEach(i => i.classList.remove('selected'));
+        // Add 'selected' to clicked image
+        img.classList.add('selected');
+        if (img.id == "film3"){
+          document.getElementById("myRightPrediction").style.display = "block";
+          document.getElementById("myWrongPrediction").style.display = "none";
+        }
+        else {
+          document.getElementById("myWrongPrediction").style.display = "block";
+          document.getElementById("myRightPrediction").style.display = "none";
+        }
+      });
+    });
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
   }, 1000);
