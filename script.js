@@ -136,9 +136,9 @@ function yesBtnClicked()
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
     setInterval(randomFirework, 1000);
-    // document.addEventListener('click', e => {
-    //   createFirework(e.clientX, e.clientY);
-    // });
+    document.addEventListener('click', e => {
+      createFirework(e.clientX, e.clientY);
+    });
   }, 1000);
 
 }
