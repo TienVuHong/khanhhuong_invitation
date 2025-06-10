@@ -10,8 +10,8 @@ function start()
       <h1 id="question"></h1>
       <div class="reaction" id="reaction" style="display: none;">
         <img src="meme.png" alt="Sad Reaction" />
-        <div class="reaction-message">Đuổi nó theo chiều ngang ấy.</div>
-        <div class="reaction-message">Cơ mà để từ chối thì phải bấm đủ 10 cơ :v</div>
+        <h3>Đuổi nó theo chiều ngang ấy</h3>
+        <h3>Cơ mà để từ chối thì phải bấm đủ 10 lần cơ :v</h3>
       </div>
     </div>
     <button class="yes" onclick="yesBtnClicked()">Điiiiiii 💖</button>
@@ -26,8 +26,9 @@ function start()
     let move_count = 0
     let clicked_count = 0
     evilButton.addEventListener('click', () => {
-      clicked_count += 1
-      noSound.play()
+      clicked_count += 1;
+      evilButton.innerText = "Uầyyy😱";
+      noSound.play();
     })
   
     document.addEventListener('mousemove', (e) => {
@@ -86,9 +87,11 @@ function showMessage(message, id)
   const textContainer = document.getElementById(id);  
   let index = 0;
   const speed = 50; // milliseconds per character
+  let html = '';
   function typeWriter() {
     if (index < message.length) {
-      textContainer.textContent += message.charAt(index);
+      html += message[index];
+      textContainer.innerHTML = html;
       index++;
       setTimeout(typeWriter, speed);
     }
@@ -98,7 +101,7 @@ function showMessage(message, id)
 
 function sendLogMessage(mess)
 {
-  fetch('/log', {
+  fetch('http://localhost:3000/log', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -124,7 +127,7 @@ function yesBtnClicked()
   setTimeout(() => {
     document.getElementById("main").innerHTML = `
       <div class="center">
-        <h1>WOOHOOO!!! Vui quáaaaaaa😍</h1>
+        <h1>Vuiii quáaaaaaaa😍</h1>
         <img src="woohoo.gif" style="max-width: 60%; height: auto;" />
         <h2>Chọn film thôiii</h2>
         <button id="dancing-button" onClick="chooseFilmClicked()">Chọn film</button>
@@ -132,7 +135,7 @@ function yesBtnClicked()
     `;
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
-    setInterval(randomFirework, 1500);
+    setInterval(randomFirework, 1000);
     // document.addEventListener('click', e => {
     //   createFirework(e.clientX, e.clientY);
     // });
@@ -149,24 +152,20 @@ function chooseFilmClicked()
     document.getElementById("main").innerHTML = `
       <div class="center">
         <div id="gallery" class="image-grid">
-          <img src="1.png" alt="Image 1" id="film1" onclick="ChosenFilm(1)">
-          <img src="2.png" alt="Image 2" id="film2" onclick="ChosenFilm(2)">
-          <img src="3.png" alt="Image 3" id="film3" onclick="ChosenFilm(3)">
-          <img src="4.png" alt="Image 4" id="film4" onclick="ChosenFilm(4)">
+          <img src="1.png" alt="Image 1" id="film1" name="Doraemon">
+          <img src="2.png" alt="Image 2" id="film2" name="Mission Imposible">
+          <img src="3.png" alt="Image 3" id="film3" name="Stitch">
+          <img src="4.png" alt="Image 4" id="film4" name="Ballerina">
         </div>
         <h3 id="choose_film_guide">
-          Đây là 4 phim mà anh thấy đáng xem nhất nè.
-          <br>Em hãy bấm vào ảnh để chọn bộ phim em thích nhé
-          <br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha
-          <input type="text" placeholder="Phim em đề xuất" id="film">
         </h3>
         <button class="purple_button" id="lastStepButton" onclick="lastStepClicked()">Last step</button>
         <h3 id="myRightPrediction" style="display: none;">
-          <br>Đúmm ùyy! Anh biết là "Disney Princess" sẽ chọn Silo & Stitch mà 😎
+          <br>Đúmm ùyy! Anh biết là "Disney Princess" sẽ chọn Lilo & Stitch mà 😎
           <br>
         </h3>
         <h3 id="myWrongPrediction" style="display: none;">
-          <br>"Disney Princess" không chọn Silo & Stitch à =)))
+          <br>"Disney Princess" không chọn Lilo & Stitch à, chọn điii anh cũng thích phim đấy =))) 
         </h3>
       </div>
     `;
@@ -174,6 +173,7 @@ function chooseFilmClicked()
     const images = document.querySelectorAll('.image-grid img');
     images.forEach(img => {
       img.addEventListener('click', () => {
+        sendLogMessage("Da chon " + img.name)
         // Remove 'selected' from all images
         images.forEach(i => i.classList.remove('selected'));
         // Add 'selected' to clicked image
@@ -188,8 +188,24 @@ function chooseFilmClicked()
         }
       });
     });
+
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
+
+    let currentIndex = 0;
+    function showImage() {
+      if (currentIndex < images.length) {
+        images.forEach((img,i) => {
+          if (i === currentIndex) {
+            img.style.opacity = 1;
+          }
+        });
+        currentIndex++;
+        setTimeout(showImage, 2000);
+      }
+    }
+    setTimeout(showImage, 1000);
+    showMessage('Đây là 4 phim mà anh thấy đáng xem nhất nè<br>Em hãy bấm vào ảnh để chọn bộ phim em thích nhé<br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha<input type="text" placeholder="Phim đề xuất" id="film">', "choose_film_guide");
   }, 1000);
 }
 
