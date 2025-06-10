@@ -15,7 +15,7 @@ app.use(cors());
 
 // Log function
 function logToFile(message) {
-  const logPath = path.join(__dirname, 'logs.txt');
+  const logPath = '/var/log/logs_web_crush.txt';
   const timestamp = new Date().toISOString();
   const logEntry = `[${timestamp}] ${message}\n`;
   fs.appendFile(logPath, logEntry, err => {
