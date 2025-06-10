@@ -119,6 +119,8 @@ function sendLogMessage(mess)
   });
 }
 
+let fireworkIntervalID = 0;
+
 function yesBtnClicked()
 {
   sendLogMessage("Da bam dong y =))");
@@ -135,7 +137,7 @@ function yesBtnClicked()
     `;
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
-    setInterval(randomFirework, 1000);
+    fireworkIntervalID = setInterval(randomFirework, 1500);
     document.addEventListener('click', e => {
       createFirework(e.clientX, e.clientY);
     });
@@ -143,6 +145,7 @@ function yesBtnClicked()
 
 }
 
+let has_chose_film = false;
 function chooseFilmClicked()
 {
   sendLogMessage("Chon film roi nhe :v");
@@ -167,12 +170,16 @@ function chooseFilmClicked()
         <h3 id="myWrongPrediction" style="display: none;">
           <br>"Disney Princess" không chọn Lilo & Stitch à, chọn điii anh cũng thích phim đấy =))) 
         </h3>
+        <h3 id="alertHasNotChoseFilmText" style="display: none;">
+          <br>Em chưa chọn film mà
+        </h3>
       </div>
     `;
 
     const images = document.querySelectorAll('.image-grid img');
     images.forEach(img => {
       img.addEventListener('click', () => {
+        has_chose_film = true;
         sendLogMessage("Da chon " + img.name)
         // Remove 'selected' from all images
         images.forEach(i => i.classList.remove('selected'));
@@ -181,10 +188,12 @@ function chooseFilmClicked()
         if (img.id == "film3"){
           document.getElementById("myRightPrediction").style.display = "block";
           document.getElementById("myWrongPrediction").style.display = "none";
+          document.getElementById("alertHasNotChoseFilmText").style.display = "none";
         }
         else {
           document.getElementById("myWrongPrediction").style.display = "block";
           document.getElementById("myRightPrediction").style.display = "none";
+          document.getElementById("alertHasNotChoseFilmText").style.display = "none";
         }
       });
     });
@@ -205,13 +214,71 @@ function chooseFilmClicked()
       }
     }
     setTimeout(showImage, 1000);
-    showMessage('Đây là 4 phim mà anh thấy đáng xem nhất nè<br>Em hãy bấm vào ảnh để chọn bộ phim em thích nhé<br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha<input type="text" placeholder="Phim đề xuất" id="film">', "choose_film_guide");
+    showMessage('Đây là 4 phim mà anh thấy đáng xem nhất nè<br>Em hãy bấm vào ảnh để chọn bộ phim em thích nhé<br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha<input type="text" placeholder="Phim đề xuất" id="filmInput">', "choose_film_guide");
   }, 1000);
 }
 
 function lastStepClicked()
 {
+  let proposalFilm = document.getElementById("filmInput").value
+  if (has_chose_film || proposalFilm)
+  {
+    if (proposalFilm)
+      sendLogMessage("De xuat phim: " + proposalFilm)
+    sendLogMessage("Last step rui ne =))");
+    document.getElementById("main").classList.remove('fade-in');
+    document.getElementById("main").classList.add('fade-out');
+    setTimeout(() => {
+      document.getElementById("main").innerHTML = `
+        <div class="center">
+          <h3>
+            SĐT: 0986774116
+            <br>Không phải "đào lừa" đâu, số của anh đấy nên đừng chặn nhá
+            <br>Còn zalo của anh trông nó sẽ như này ...
+            <br><img src="zalo.png" alt="my_zalo" style="border-radius: 10px;">
+            <br>Anh sẽ chủ động contact em, hy vọng em không block =))
+            <br>Nếu em có gì muốn nhắn gì cho anh thì feel free to text me in the box below
+          </h3>
+          <textarea id="autoResizeTextarea" placeholder="Lời nhắn ..."></textarea>
+          <br><button class="purple_button" onClick="finish()">Finish</button>
+        </div>
+      `;
+      const textarea = document.getElementById('autoResizeTextarea');
+      textarea.addEventListener('input', function () {
+        this.style.height = 'auto'; // Reset height
+        this.style.height = this.scrollHeight + 'px'; // Set to scroll height
+      });
+      document.getElementById("main").classList.remove('fade-out');
+      document.getElementById("main").classList.add('fade-in');
+    }, 1000);
+  }
+  else
+  {
+    document.getElementById("alertHasNotChoseFilmText").style.display = "block";
+  }
+}
 
+function finish()
+{
+  let lastMessage = document.getElementById("autoResizeTextarea").value;
+  if (lastMessage)
+    sendLogMessage("Last message: " + lastMessage);
+  sendLogMessage("Finish roi, done bro.");
+  document.getElementById("main").classList.remove('fade-in');
+  document.getElementById("main").classList.add('fade-out');
+  setTimeout(() => {
+    document.getElementById("main").innerHTML = `
+      <div class="center">
+        <img src="start1.png" alt="start" class="zoom-image" onclick="start()" width="300" height="300">
+        <h1 style="color: #7d3eb1;">Bắt đầu</h1>
+      </div>
+    `;
+    document.getElementById("main").classList.remove('fade-out');
+    document.getElementById("main").classList.add('fade-in');
+    clearInterval(fireworkIntervalID);
+    fireworkIntervalID = null;
+    document.addEventListener('click', e => {});
+  }, 1000);
 }
 
 function randomColor() {
