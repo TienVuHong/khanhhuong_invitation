@@ -1,3 +1,5 @@
+let logAddress = 'http://localhost:3000/log';
+
 function start()
 {
   const bgSound = document.getElementById('bgSound');
@@ -101,7 +103,7 @@ function showMessage(message, id)
 
 function sendLogMessage(mess)
 {
-  fetch('http://localhost:3000/log', {
+  fetch(logAddress, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
