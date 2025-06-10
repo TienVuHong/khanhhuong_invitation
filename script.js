@@ -2,6 +2,7 @@ let logAddress = 'http://localhost:3000/log';
 
 function start()
 {
+  sendLogMessage("Bat dau thoi")
   const bgSound = document.getElementById('bgSound');
   bgSound.volume = 0.5;
   bgSound.play();
