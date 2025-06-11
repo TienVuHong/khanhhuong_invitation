@@ -1,4 +1,4 @@
-let logAddress = 'http://localhost:3000/log';
+let logAddress = 'http://157.245.156.135:3000/log';
 
 function start()
 {
