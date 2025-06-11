@@ -1,37 +1,81 @@
 let logAddress = 'http://157.245.156.135:3000/log';
 
+const bgSound = document.getElementById('bgSound');
+const yesSound = document.getElementById('yesSound');
+
 function start()
 {
   sendLogMessage("Bat dau thoi")
-  const bgSound = document.getElementById('bgSound');
+  yesSound.volume = 0.5;
   bgSound.volume = 0.5;
+  yesSound.pause();
   bgSound.play();
   document.getElementById("main").classList.add('fade-out');
   setTimeout(() => {
     document.getElementById("main").innerHTML = `
     <div class="center">
       <h1 id="question"></h1>
-      <div class="reaction" id="reaction" style="display: none;">
-        <img src="meme.png" alt="Sad Reaction" />
-        <h3>Đuổi nó theo chiều ngang ấy</h3>
-        <h3>Cơ mà để từ chối thì phải bấm đủ 10 lần cơ :v</h3>
-      </div>
+
     </div>
     <button class="yes" onclick="yesBtnClicked()">Điiiiiii 💖</button>
     <button id="evil-button">Không 🙈</button>
+    <div class="reaction" id="reaction" style="display: none;">
+      <h3 style="margin-top: 0;">
+        <br>Hint: Đuổi nó theo chiều ngang ấy
+        <br>Cơ mà để từ chối thì phải bấm đủ 10 lần cơ 😏
+      </h3>
+    </div>
+    <div class="reaction" id="reactionDisapointed" style="display: none;">
+      <h3 style="margin-top: 0;">
+        <img id="disapointGIF" src="disappointed-disappointed-fan.gif" width="300px">
+      </h3>
+    </div>
+    
     `;
 
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
     const evilButton = document.getElementById('evil-button');
-    const noSound = document.getElementById('noSound');
+    const shock = document.getElementById('shock');
+    const runWhy = document.getElementById('runWhy');
+    const runBaTan = document.getElementById('runBaTan');
+    const runaway = document.getElementById('runaway');
+    const quark = document.getElementById('quark');
     const OFFSET = 20
     let move_count = 0
     let clicked_count = 0
     evilButton.addEventListener('click', () => {
       clicked_count += 1;
-      evilButton.innerText = "Uầyyy😱";
-      noSound.play();
+      if(clicked_count % 5 == 1) {
+        document.getElementById("reaction").style.display = "block";
+        evilButton.innerText = `Uầyyy 😱 ${clicked_count}`;
+        shock.play();
+      }
+      else if(clicked_count % 5 == 2) {
+        evilButton.innerText = `Đừngg 🫣 ${clicked_count}`;
+        runBaTan.play();
+      }
+      else if(clicked_count % 5 == 3) {
+        evilButton.innerText = `Xin đấy😣 ${clicked_count}`;
+        runWhy.play();
+      }
+      else if(clicked_count % 5 == 4) {
+        evilButton.innerText = `Hoyyy 😫 ${clicked_count}`;
+        runaway.play();
+      }
+      else if(clicked_count % 5 == 0) {
+        evilButton.innerText = `Chịu ời 🤦‍♂️ ${clicked_count}`;
+        quark.play();
+      }
+      else {
+        evilButton.innerText = `Chịu ời 🤦‍♂️ ${clicked_count}`;
+        quark.play();
+      }
+
+      if (clicked_count == 10) {
+        document.getElementById("reaction").style.display = "none";
+        document.getElementById("reactionDisapointed").style.display = "block";
+      }
     })
   
     document.addEventListener('mousemove', (e) => {
@@ -127,6 +171,8 @@ let fireworkIntervalID = 0;
 function yesBtnClicked()
 {
   sendLogMessage("Da bam dong y =))");
+  bgSound.pause();
+  yesSound.play();
   document.getElementById("main").classList.remove('fade-in');
   document.getElementById("main").classList.add('fade-out');
   setTimeout(() => {
@@ -165,7 +211,7 @@ function chooseFilmClicked()
         </div>
         <h3 id="choose_film_guide">
         </h3>
-        <button class="purple_button" id="lastStepButton" onclick="lastStepClicked()">Last step</button>
+        <button class="purple_button" id="lastStepButton" onclick="lastStepClicked()">Next</button>
         <h3 id="myRightPrediction" style="display: none;">
           <br>Đúmm ùyy! Anh biết là "Disney Princess" sẽ chọn Lilo & Stitch mà 😎
           <br>
@@ -213,11 +259,11 @@ function chooseFilmClicked()
           }
         });
         currentIndex++;
-        setTimeout(showImage, 2000);
+        setTimeout(showImage, 600);
       }
     }
     setTimeout(showImage, 1000);
-    showMessage('Đây là 4 phim mà anh thấy đáng xem nhất nè<br>Em hãy bấm vào ảnh để chọn bộ phim em thích nhé<br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha<input type="text" placeholder="Phim đề xuất" id="filmInput">', "choose_film_guide");
+    showMessage('4 phim mà anh thấy đáng xem nhất nè<br>Em bấm vào ảnh để chọn phim em thích nhé<br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha<input type="text" placeholder="Phim đề xuất" id="filmInput">', "choose_film_guide");
   }, 1000);
 }
 
@@ -234,16 +280,17 @@ function lastStepClicked()
     setTimeout(() => {
       document.getElementById("main").innerHTML = `
         <div class="center">
+          <h1>0986774116</h1>
           <h3>
-            SĐT: 0986774116
-            <br>Không phải "đào lừa" đâu, số của anh đấy nên đừng chặn nhá
+            Không phải "đào lừa" đâu, số của anh đấy nên đừng chặn nhá
             <br>Còn zalo của anh trông nó sẽ như này ...
             <br><img src="zalo.png" alt="my_zalo" style="border-radius: 10px;">
+            <br>Thấy kết bạn thì đừng giật mình nhé 😁
             <br>Anh sẽ chủ động contact em, hy vọng em không block =))
             <br>Nếu em có gì muốn nhắn gì cho anh thì feel free to text me in the box below
           </h3>
           <textarea id="autoResizeTextarea" placeholder="Lời nhắn ..."></textarea>
-          <br><button class="purple_button" onClick="finish()">Finish</button>
+          <br><button class="purple_button" onClick="finish()">Done</button>
         </div>
       `;
       const textarea = document.getElementById('autoResizeTextarea');
@@ -267,6 +314,10 @@ function finish()
   if (lastMessage)
     sendLogMessage("Last message: " + lastMessage);
   sendLogMessage("Finish roi, done bro.");
+  yesSound.pause();
+  bgSound.pause();
+  yesSound.currentTime = 0;
+  bgSound.currentTime = 0;
   document.getElementById("main").classList.remove('fade-in');
   document.getElementById("main").classList.add('fade-out');
   setTimeout(() => {
