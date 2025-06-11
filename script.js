@@ -46,6 +46,7 @@ function start()
     let clicked_count = 0
     evilButton.addEventListener('click', () => {
       clicked_count += 1;
+      sendLogMessage(`Tu choi (${clicked_count})`)
       if(clicked_count % 5 == 1) {
         document.getElementById("reaction").style.display = "block";
         evilButton.innerText = `Uầyyy 😱 ${clicked_count}`;
