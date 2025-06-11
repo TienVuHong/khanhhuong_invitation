@@ -125,7 +125,7 @@ function start()
       return boxPosition - mousePosition + boxSize / 2
     }
 
-    showMessage('Cuối tuần này đi xem phim với anh nhéee?😊💕', 'question')
+    showMessage('Bùi Khánh Hương<br>Cuối tuần này đi xem phim với anh nhéee?😊💕', 'question')
   }, 1000);
   
 }
