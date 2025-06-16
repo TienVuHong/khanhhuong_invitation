@@ -281,15 +281,14 @@ function lastStepClicked()
     setTimeout(() => {
       document.getElementById("main").innerHTML = `
         <div class="center">
-          <h1>0986774116</h1>
-          <h3>
-            Không phải "đào lừa" đâu, số của anh đấy nên đừng chặn nhá
-            <br>Còn zalo của anh trông nó sẽ như này ...
-            <br><img src="zalo.png" alt="my_zalo" style="border-radius: 10px;">
-            <br>Thấy kết bạn thì đừng giật mình nhé 😁
-            <br>Anh sẽ chủ động contact em, hy vọng em không block =))
-            <br>Nếu em có gì muốn nhắn gì cho anh thì feel free to text me in the box below
+          <img src="schedule.png" style="max-width: 100%; height: auto;"></img>
+          <h3 style="margin: 0%;">
+            0986774116
           </h3>
+          <p style="margin: 0; color: #7d3eb1">
+            Không phải "đào lửa" đâu, số của anh đấy nên đừng chặn nhá
+            <br>Nếu em có gì muốn nhắn gì cho anh thì feel free to text me in the box below
+          </p>
           <textarea id="autoResizeTextarea" placeholder="Lời nhắn ..."></textarea>
           <br><button class="purple_button" onClick="finish()">Done</button>
         </div>
