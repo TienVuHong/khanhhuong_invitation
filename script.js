@@ -125,16 +125,16 @@ function start()
       return boxPosition - mousePosition + boxSize / 2
     }
 
-    showMessage('Bùi Khánh Hương<br>Cuối tuần này đi xem phim với anh nhéee?😊💕', 'question')
+    showMessage('Bùi Khánh Hương<br>Cuối tuần này đi xem phim với anh nhéee?😊💕', 'question', 100)
   }, 1000);
   
 }
 
-function showMessage(message, id)
+function showMessage(message, id, speed = 50)
 {
   const textContainer = document.getElementById(id);  
   let index = 0;
-  const speed = 50; // milliseconds per character
+  // const speed = 50; // milliseconds per character
   let html = '';
   function typeWriter() {
     if (index < message.length) {
@@ -264,7 +264,7 @@ function chooseFilmClicked()
       }
     }
     setTimeout(showImage, 1000);
-    showMessage('4 phim mà anh thấy đáng xem nhất nè<br>Em bấm vào ảnh để chọn phim em thích nhé<br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha<input type="text" placeholder="Phim đề xuất" id="filmInput">', "choose_film_guide");
+    showMessage('4 phim mà anh thấy đáng xem nhất nè<br>Em bấm vào ảnh để chọn phim em thích nhé<br>Hoặc nếu em có đề xuất phim gì khác thì nhắn cho anh vào đây nha<input type="text" placeholder="Phim đề xuất" id="filmInput">', "choose_film_guide", 40);
   }, 1000);
 }
 
@@ -323,15 +323,25 @@ function finish()
   setTimeout(() => {
     document.getElementById("main").innerHTML = `
       <div class="center">
-        <img src="start1.png" alt="start" class="zoom-image" onclick="start()" width="300" height="300">
-        <h1 style="color: #7d3eb1;">Bắt đầu</h1>
+        <h2 id="thankText0" style="font-size: 2em;"></h2>
+        <h1 id="thankText1" style="font-size: 3em;"></h1>
+        <h1 id="thankText2" style="font-size: 4em;"></h1>
+        <h1 id="thankText3" style="font-size: 5em;"></h1>
       </div>
     `;
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
-    clearInterval(fireworkIntervalID);
-    fireworkIntervalID = null;
-    document.addEventListener('click', e => {});
+
+    showMessage('Cảm ơn Khánh Hương đã đồng ý🥰', 'thankText0', 50)
+    setTimeout(() => {
+      showMessage('Thank you 3000!!!', 'thankText1', 200);
+    }, 2000);
+    setTimeout(() => {
+      showMessage('Thank you 3000!!!', 'thankText2', 200);
+    }, 6000);
+    setTimeout(() => {
+      showMessage('Thank you 3000!!!', 'thankText3', 200);
+    }, 10000);        
   }, 1000);
 }
 
