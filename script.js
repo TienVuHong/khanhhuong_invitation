@@ -332,7 +332,7 @@ function finish()
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
 
-    showMessage('Cảm ơn Khánh Hương đã đồng ý🥰', 'thankText0', 50)
+    showMessage('Cảm ơn Khánh Hươngggggggg🥰', 'thankText0', 50);
     setTimeout(() => {
       showMessage('Thank you 3000!!!', 'thankText1', 200);
     }, 2000);
