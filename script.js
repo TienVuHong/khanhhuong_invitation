@@ -286,8 +286,9 @@ function lastStepClicked()
             0986774116
           </h3>
           <p style="margin: 0; color: #7d3eb1">
-            Không phải "đào lửa" đâu, số của anh đấy nên đừng chặn nhá
-            <br>Nếu em có gì muốn nhắn gì cho anh thì feel free to text me in the box below
+            Không phải "đào lửa" đâu, số của anh đấy nên đừng chặn nhá, bị anh gọi cũng đừng giật mình :v
+            <br>Còn nếu em có gì muốn nhắn gì cho anh thì text dưới đây nhen.
+            <br>Thank you 3000!!
           </p>
           <textarea id="autoResizeTextarea" placeholder="Lời nhắn ..."></textarea>
           <br><button class="purple_button" onClick="finish()">Done</button>
