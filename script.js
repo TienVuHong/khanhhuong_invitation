@@ -19,6 +19,19 @@ function start()
     </div>
     <button class="yes" onclick="yesBtnClicked()">Điiiiiii 💖</button>
     <button id="evil-button">Không 🙈</button>
+    <div>
+      <h3 style="margin: 0%; font-size: 1.0rem">
+        Nếu anh tinh tế hơn
+        <br>Thì đã biết đặt hộp tin khi em bấm từ chối
+        <br>Thôi thì muộn nhưng cho anh đặt lại nha =))
+        <br>Nếu tuần này em bận
+        <br>Hoặc không thích xem phim
+        <br>Hoặc có đề xuất khác
+        <br>Hoặc ...
+      </h3>
+      <textarea id="rejectTextarea" placeholder="Lời nhắn ..." style="width: 25%;"></textarea>
+      <br><button class="purple_button" onClick="sendRejectMessage()">Send</button>
+    </div>
     <div class="reaction" id="reaction" style="display: none;">
       <h3 style="margin-top: 0;">
         <br>Hint: Đuổi nó theo chiều ngang ấy
@@ -32,6 +45,12 @@ function start()
     </div>
     
     `;
+
+    const rejectTextarea = document.getElementById('rejectTextarea');
+    rejectTextarea.addEventListener('input', function () {
+      this.style.height = 'auto'; // Reset height
+      this.style.height = this.scrollHeight + 'px'; // Set to scroll height
+    });
 
     document.getElementById("main").classList.remove('fade-out');
     document.getElementById("main").classList.add('fade-in');
@@ -128,6 +147,13 @@ function start()
     showMessage('Bùi Khánh Hương<br>Cuối tuần này đi xem phim với anh nhéee?😊💕', 'question', 100)
   }, 1000);
   
+}
+
+function sendRejectMessage()
+{
+  rejectTextarea = document.getElementById('rejectTextarea');
+  sendLogMessage('Tin nhan tu choi: ' + rejectTextarea.value);
+  rejectTextarea.value = '';
 }
 
 function showMessage(message, id, speed = 50)
@@ -282,13 +308,9 @@ function lastStepClicked()
       document.getElementById("main").innerHTML = `
         <div class="center">
           <img src="schedule.png" style="max-width: 100%; height: auto;"></img>
-          <h3 style="margin: 0%;">
-            0986774116
+          <h3 style="margin: 0; color: #7d3eb1">
+            Em có gì muốn nhắn gì cho anh thì text dưới đây nhen.
           </h3>
-          <p style="margin: 0; color: #7d3eb1">
-            Không phải "đào lửa" đâu, số của anh đấy nên đừng chặn nhá, bị anh gọi cũng đừng giật mình :v
-            <br>Còn nếu em có gì muốn nhắn gì cho anh thì text dưới đây nhen.
-          </p>
           <textarea id="autoResizeTextarea" placeholder="Lời nhắn ..."></textarea>
           <br><button class="purple_button" onClick="finish()">Done</button>
         </div>
