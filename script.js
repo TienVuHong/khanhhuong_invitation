@@ -19,31 +19,25 @@ function start()
     </div>
     <button class="yes" onclick="yesBtnClicked()">Điiiiiii 💖</button>
     <button id="evil-button">Không 🙈</button>
-    <div>
+    <div class="reaction" id="reaction" style="display: none;">
       <h3 style="margin: 0%; font-size: 1.0rem">
-        Nếu anh tinh tế hơn
-        <br>Thì đã biết đặt hộp tin khi em bấm từ chối
-        <br>Thôi thì muộn nhưng cho anh đặt lại nha =))
-        <br>Nếu tuần này em bận
-        <br>Hoặc không thích xem phim
-        <br>Hoặc có đề xuất khác
-        <br>Hoặc ...
+        Là thiếu sót của anh
+        <br>Khi không hiện text box khi em bấm từ chối
+        <br>Thôi dù muộn nhưng cho anh đặt lại nha =))
+        <br>Mà đừng từ chối quá 3 lần nhé
       </h3>
       <textarea id="rejectTextarea" placeholder="Lời nhắn ..." style="width: 25%;"></textarea>
       <br><button class="purple_button" onClick="sendRejectMessage()">Send</button>
     </div>
-    <div class="reaction" id="reaction" style="display: none;">
-      <h3 style="margin-top: 0;">
-        <br>Hint: Đuổi nó theo chiều ngang ấy
-        <br>Cơ mà để từ chối thì phải bấm đủ 10 lần cơ 😏
+    <div id="reactionDisapointed" style="display: none; margin: 0%;">
+      <img id="disapointGIF" src="pls.gif" style="width: 25%; margin: 0%;">
+    </div>
+    <div id="reactionDisapointed1" style="display: none; margin: 0%;">
+      <img id="disapointGIF1" src="pls1.gif" style="width: 25%; margin: 0%;">
+      <h3 style="margin: 0%; font-size: 1.0rem">
+        Hoyyy mà, đồng ý điiiiiiii 🥺🥺🥺
       </h3>
     </div>
-    <div class="reaction" id="reactionDisapointed" style="display: none;">
-      <h3 style="margin-top: 0;">
-        <img id="disapointGIF" src="disappointed-disappointed-fan.gif" width="300px">
-      </h3>
-    </div>
-    
     `;
 
     const rejectTextarea = document.getElementById('rejectTextarea');
@@ -92,9 +86,11 @@ function start()
         quark.play();
       }
 
-      if (clicked_count == 10) {
-        document.getElementById("reaction").style.display = "none";
+      if (clicked_count == 2) {
         document.getElementById("reactionDisapointed").style.display = "block";
+      }
+      if (clicked_count == 3) {
+        document.getElementById("reactionDisapointed1").style.display = "block";
       }
     })
   
@@ -308,8 +304,8 @@ function lastStepClicked()
       document.getElementById("main").innerHTML = `
         <div class="center">
           <img src="schedule.png" style="max-width: 100%; height: auto;"></img>
-          <h3 style="margin: 0; color: #7d3eb1">
-            Em có gì muốn nhắn gì cho anh thì text dưới đây nhen.
+          <h3 style="color: #7d3eb1">
+            Em có gì đề xuất gì thì nhắn dưới này nhé.
           </h3>
           <textarea id="autoResizeTextarea" placeholder="Lời nhắn ..."></textarea>
           <br><button class="purple_button" onClick="finish()">Done</button>
@@ -336,10 +332,6 @@ function finish()
   if (lastMessage)
     sendLogMessage("Last message: " + lastMessage);
   sendLogMessage("Finish roi, done bro.");
-  yesSound.pause();
-  bgSound.pause();
-  yesSound.currentTime = 0;
-  bgSound.currentTime = 0;
   document.getElementById("main").classList.remove('fade-in');
   document.getElementById("main").classList.add('fade-out');
   setTimeout(() => {
