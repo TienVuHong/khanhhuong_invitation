@@ -24,7 +24,7 @@ function start()
         Là thiếu sót của anh
         <br>Khi không hiện text box khi em bấm từ chối
         <br>Thôi dù muộn nhưng cho anh đặt lại nha =))
-        <br>Mà đừng từ chối quá 3 lần nhé
+        <br>Mà đừng bấm quá 3 lần nhé
       </h3>
       <textarea id="rejectTextarea" placeholder="Lời nhắn ..." style="width: 25%;"></textarea>
       <br><button class="purple_button" onClick="sendRejectMessage()">Send</button>
