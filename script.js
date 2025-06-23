@@ -19,7 +19,7 @@ function start()
     </div>
     <button class="yes" onclick="yesBtnClicked()">Điiiiiii 💖</button>
     <button id="evil-button">Không 🙈</button>
-    <div class="reaction" id="reaction" style="display: none;">
+    <div class="reaction" id="reaction">
       <h3 style="margin: 0%; font-size: 1.0rem">
         Là thiếu sót của anh
         <br>Khi không hiện text box khi em bấm từ chối
